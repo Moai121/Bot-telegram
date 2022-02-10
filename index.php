@@ -18,7 +18,7 @@ switch($message) {
         sendMessage($chatId, $response);
         break;
     case '/partidos':
-        $responde='Los partidos de hoy son: ';
+        $responde='Los partidos de hoy son:';
         sendMessage($chatId,$response);
         break;
     default:

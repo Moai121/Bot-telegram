@@ -17,7 +17,7 @@ switch($message) {
         $response = 'Hola! Soy @Botnoticiero';
         sendMessage($chatId, $response);
         break;
-    case '/Quienjuegahoy':
+    case '/quienjuegahoy':
         $responde='Los partidos de hoy son: ';
         sendMessage($chatId,$response);
         break;

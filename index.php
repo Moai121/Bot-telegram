@@ -38,14 +38,14 @@ function sendMessage($chatId, $response) {
 // }
 function mostrarnoticias($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
-    $url="https://servicios.elpais.com/rss/";
+    $url="https://www.europapress.es/contenidosrss/";
     $xmlsrting=file_get_contents($url,false,$context);
     $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDATA);
     $json=json_encode($xml);
     $array=json_decode($json,TRUE); 
 
     for($i=0;$i <9;$i++){
-        $titulo=$titulo."\n\n".$array['channel']['title'][$i]['description']."<a href='>".$array['channel']['title'][$i]['link']."'>+info</a>";
+        $titulo=$titulo."\n\n".$array['channel']['item'][$i]['title']."<a href='>".$array['channel']['item'][$i]['link']."'>+info</a>";
     }
     sendMessage($chatId,$titulo);
 }

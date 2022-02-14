@@ -38,7 +38,7 @@ function sendMessage($chatId, $response) {
 // }
 function mostrarnoticias($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
-    $url="https://www.europapress.es/contenidosrss/";
+    $url="https://www.europapress.es/rss/rss.aspx";
     $xmlsrting=file_get_contents($url,false,$context);
     $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDATA);
     $json=json_encode($xml);

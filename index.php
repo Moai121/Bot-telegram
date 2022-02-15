@@ -50,9 +50,11 @@ function mostrarnoticias($chatId){
     for($i=0;$i <9;$i++){
         $titulo=$titulo."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
     }
-    sendMessage($chatId,$titulo);
+    sendMessage($chatId,$titulo,TRUE);
 }
-function elegircategoria($chatId){
+function elegircategoria($chatId,$response,$repl){
+    if($repl==TRUE){
     force_reply($categoria,TRUE);
+    }
 }
 ?>9

@@ -22,7 +22,7 @@ switch($message) {
         mostrarnoticias($chatId,$response,TRUE);
         break;
     case '/categoria':
-        elegircategoria($chatId,$message,TRUE);
+        elegircategoria($chatId,$response,TRUE);
         break;
     default:
         $response = 'No te he entendido';

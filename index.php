@@ -7,6 +7,7 @@ $update = json_decode($input, TRUE);
 
 $chatId = $update['message']['chat']['id'];
 $message = $update['message']['text'];
+$reply=$update["message"]["reply_to_message"]["text"];
 
 switch($message) {
     case '/start':
@@ -20,6 +21,9 @@ switch($message) {
     case '/noticias':
         mostrarnoticias($chatId);
         break;
+    case '/categoria':
+        elegircategoria($chatId,$message);
+        break;
     default:
         $response = 'No te he entendido';
         sendMessage($chatId, $response);
@@ -30,12 +34,6 @@ function sendMessage($chatId, $response) {
     $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response);
     file_get_contents($url);
 }
-// function buscarnoticia($chatId,$destino,$inicio,$localicacion){
-//     $tokengoogle="AIzaSyAkr2AnND93qyJcRn1TDgR_UwWPdmjQoiA";
-//     $url="https://maps.googleapis.com/maps/api/directions/json?origin=".urlencode($inicio)."&destination=".urlencode($destino)."&key=".$tokengoogle;
-//     $resultado=file_get_contents($url);
-//     $resultado=json_decode($resultado,TRUE);
-// }
 function mostrarnoticias($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
     $url="https://www.europapress.es/rss/rss.aspx";
@@ -49,4 +47,7 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo);
 }
-?>
+function elegircategoria($chatId){
+    force_reply($categoria,TRUE);
+}
+?>9

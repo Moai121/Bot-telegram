@@ -57,4 +57,4 @@ function elegircategoria($chatId,$response,$repl){
     force_reply($categoria,TRUE);
     }
 }
-?>9
+?>

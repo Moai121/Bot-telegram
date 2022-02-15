@@ -12,21 +12,21 @@ $reply=$update["message"]["reply_to_message"]["text"];
 switch($message) {
     case '/start':
         $response = 'Me has iniciado';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,TRUE);
         break;
     case '/info':
         $response = 'Hola! Soy @Botnoticiero';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,TRUE);
         break;
     case '/noticias':
-        mostrarnoticias($chatId);
+        mostrarnoticias($chatId,$response,TRUE);
         break;
     case '/categoria':
         elegircategoria($chatId,$message,TRUE);
         break;
     default:
         $response = 'No te he entendido';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,TRUE);
         break;
 }
 

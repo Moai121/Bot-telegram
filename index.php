@@ -21,10 +21,12 @@ switch($message) {
         sendMessage($chatId, $response);
         break;
     case '/noticias':
-        mostrarnoticias($chatId,$response);
+        mostrarnoticias($chatId);
         break;
     case '/categoria':
+        $response='Las noticias de su categoria';
         elegircategoria($chatId,$response,TRUE);
+        echo "timidin";
         break;
     default:
         $response = 'No te he entendido';
@@ -44,8 +46,8 @@ function sendMessage($chatId, $response,$repl) {
 function mostrarnoticias($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
     $url="https://www.elperiodico.com/es/rss/rss_portada.xml";
-    $xmlsrting=file_get_contents($url,false,$context);
-    $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDATA);
+    $xmlstring=file_get_contents($url,false,$context);
+    $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDATA);
     $json=json_encode($xml);
     $array=json_decode($json,TRUE); 
 
@@ -54,19 +56,19 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-function elegircategoria($chatId,$response,$repl){
-    echo "timidin";
-        $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
-        $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
-        $xmlsrting=file_get_contents($url,false,$context);
-        $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDARA);
-        $json=json_encode($xml);
-        $array=json_decode($json,TRUE);
+// function elegircategoria($chatId,$response,$repl){
+//     echo "timidin";
+//         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
+//         $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
+//         $xmlstring=file_get_contents($url,false,$context);
+//         $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
+//         $json=json_encode($xml);
+//         $array=json_decode($json,TRUE);
 
-        for($i=0;$i<9;$i++){
-            $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";;
-        }
+//         for($i=0;$i<9;$i++){
+//             $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";;
+//         }
         
-        sendMessage($chatId,$categoria,TRUE); 
-    }
+//         sendMessage($chatId,$categoria,TRUE); 
+//     }
  ?>

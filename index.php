@@ -14,12 +14,12 @@ $reply = $update["message"]["reply_to_message"]["text"];
 switch($message) {
     case '/start':
         $response = 'Me has iniciado';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,FALSE);
         break;
 
     case '/info':
         $response = 'Hola! Soy @Botnoticiero';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,FALSE);
         break;
 
     case '/noticias':
@@ -34,7 +34,7 @@ switch($message) {
 
     default:
         $response = 'No te he entendido';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,FALSE);
         break;
 }
 

@@ -1,19 +1,21 @@
-<?php
-$token = "5261731576:AAGdSJRelD3k5Hl-Wnkudj1lPdm3W1mVSa4";
-$website = 'https://api.telegram.org/bot'.$token;
+<!-- <?php
 
-$input = file_get_contents('php://input');
-$update = json_decode($input, TRUE);
+echo "hola";
+// $token = "5261731576:AAGdSJRelD3k5Hl-Wnkudj1lPdm3W1mVSa4";
+// $website = 'https://api.telegram.org/bot'.$token;
 
-$chatId = $update['message']['chat']['id'];
-$message = $update['message']['text'];
-//$reply=$update["message"]["reply_to_message"]["text"];
+// $input = file_get_contents('php://input');
+// $update = json_decode($input, TRUE);
 
-switch($message) {
-    case '/start':
-        $response = 'Me has iniciado';
-        sendMessage($chatId, $response);
-        break;
+// $chatId = $update['message']['chat']['id'];
+// $message = $update['message']['text'];
+// //$reply=$update["message"]["reply_to_message"]["text"];
+
+// switch($message) {
+//     case '/start':
+//         $response = 'Me has iniciado';
+//         sendMessage($chatId, $response);
+//         break;
     // case '/info':
     //     $response = 'Hola! Soy @Botnoticiero';
     //     sendMessage($chatId, $response);
@@ -30,14 +32,14 @@ switch($message) {
     //     break;
 }
 
-function sendMessage($chatId, $response,$repl) {
-    // if ($repl == TRUE){ 
-    //     $reply_mark = array('force_reply' => True); 
-    //     $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&reply_markup='.json_encode($reply_mark).'&text='.urlencode($response); 
-   // }else{ 
-        $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response); 
-    //} 
-    file_get_contents($url);
+// function sendMessage($chatId, $response,$repl) {
+//     // if ($repl == TRUE){ 
+//     //     $reply_mark = array('force_reply' => True); 
+//     //     $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&reply_markup='.json_encode($reply_mark).'&text='.urlencode($response); 
+//    // }else{ 
+//         $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response); 
+//     //} 
+//     file_get_contents($url);
 }
 // function mostrarnoticias($chatId){
 //     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
@@ -66,4 +68,4 @@ function sendMessage($chatId, $response,$repl) {
         
 //         sendMessage($chatId,$categoria,TRUE); 
 //     }
-?>
+// ?>

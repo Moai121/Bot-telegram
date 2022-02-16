@@ -9,7 +9,7 @@ $update = json_decode($input, TRUE);
 
 $chatId = $update['message']['chat']['id'];
 $message = $update['message']['text'];
-//$reply=$update["message"]["reply_to_message"]["text"];
+$reply=$update["message"]["reply_to_message"]["text"];
 
 switch($message) {
     case '/start':
@@ -35,12 +35,12 @@ switch($message) {
 }
 
 function sendMessage($chatId, $response,$repl) {
-    // if ($repl == TRUE){ 
-    //     $reply_mark = array('force_reply' => True); 
-    //     $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&reply_markup='.json_encode($reply_mark).'&text='.urlencode($response); 
-   // }else{ 
+    if ($repl == TRUE){ 
+        $reply_mark = array('force_reply' => True); 
+        $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&reply_markup='.json_encode($reply_mark).'&text='.urlencode($response); 
+   }else{ 
         $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response); 
-    //} 
+    } 
     file_get_contents($url);
 }
 function mostrarnoticias($chatId){
@@ -56,19 +56,19 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-// function elegircategoria($chatId,$response,$repl){
-//     echo "timidin";
-//         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
-//         $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
-//         $xmlstring=file_get_contents($url,false,$context);
-//         $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
-//         $json=json_encode($xml);
-//         $array=json_decode($json,TRUE);
+function elegircategoria($chatId,$response,$repl){
+    echo "timidin";
+        $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
+        $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
+        $xmlstring=file_get_contents($url,false,$context);
+        $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
+        $json=json_encode($xml);
+        $array=json_decode($json,TRUE);
 
-//         for($i=0;$i<9;$i++){
-//             $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";;
-//         }
+        for($i=0;$i<9;$i++){
+            $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";;
+        }
         
-//         sendMessage($chatId,$categoria,TRUE); 
-//     }
+        sendMessage($chatId,$categoria,TRUE); 
+    }
  ?>

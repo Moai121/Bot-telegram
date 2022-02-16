@@ -54,18 +54,15 @@ function mostrarnoticias($chatId){
 }
 function elegircategoria($chatId,$response,$repl){
         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
-        $url = "https://www.elperiodico.com/es/rss/economia/rss.xml"; 
+        $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
         $xmlsrting=file_get_contents($url,false,$context);
         $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDARA);
         $json=json_encode($xml);
         $array=json_decode($json,TRUE);
 
         for($i=0;$i<9;$i++){
-            $categoria=$categoria."\n\n".$array['channel']['item']['title'];
+            $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";;
         }
-
-        // $categoria=$response;
-        // $url= "https://www.elperiodico.com/es/rss/".$categoria."/rss.xml"; 
         
         sendMessage($chatId,$categoria,TRUE); 
     }

@@ -30,7 +30,7 @@ echo "hola";
     //     $response = 'No te he entendido';
     //     sendMessage($chatId, $response);
     //     break;
-}
+// }
 
 // function sendMessage($chatId, $response,$repl) {
 //     // if ($repl == TRUE){ 
@@ -40,7 +40,7 @@ echo "hola";
 //         $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response); 
 //     //} 
 //     file_get_contents($url);
-}
+// }
 // function mostrarnoticias($chatId){
 //     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
 //     $url="https://www.elperiodico.com/es/rss/rss_portada.xml";

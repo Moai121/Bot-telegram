@@ -52,24 +52,24 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-function elegircategoria($chatId,$response,$repl){
-    if ($repl == TRUE){
-        $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
-        $reply_mark = array('force_reply' => True); 
-        $url = "https://www.elperiodico.com/es/rss/economia/rss.xml"; 
-        $xmlsrting=file_get_contents($url,false,$context);
-        $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDARA);
-        $json=json_encode($xml);
-        $array=json_encode($json,TRUE);
+// function elegircategoria($chatId,$response,$repl){
+//     if ($repl == TRUE){
+//         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
+//         $reply_mark = array('force_reply' => True); 
+//         $url = "https://www.elperiodico.com/es/rss/economia/rss.xml"; 
+//         $xmlsrting=file_get_contents($url,false,$context);
+//         $xml=simplexml_load_string($xmlsrting,"SimpleXMLElement",LIBXML_NOCDARA);
+//         $json=json_encode($xml);
+//         $array=json_encode($json,TRUE);
 
-        for($i=0;$i<9;$i++){
-            $categoria=$categoria."\n\n".$array[''];
-        }
+//         for($i=0;$i<9;$i++){
+//             $categoria=$categoria."\n\n".$array[''];
+//         }
         
-        sendMessage($chatId,$categoria,TRUE);
-    }else{ 
-        $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response); 
-    } 
-    file_get_contents($url);
+//         sendMessage($chatId,$categoria,TRUE);
+//     }else{ 
+//         $url = $GLOBALS['website'].'/sendMessage?chat_id='.$chatId.'&parse_mode=HTML&text='.urlencode($response); 
+//     } 
+//     file_get_contents($url);
 }
 ?>

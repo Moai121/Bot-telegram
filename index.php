@@ -16,7 +16,7 @@ switch($message) {
         break;
     case '/info':
         $response = 'Hola! Soy @Botnoticiero';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,TRUE);
         break;
     case '/noticias':
         mostrarnoticias($chatId,$response,TRUE);
@@ -26,7 +26,7 @@ switch($message) {
         break;
     default:
         $response = 'No te he entendido';
-        sendMessage($chatId, $response);
+        sendMessage($chatId, $response,TRUE);
         break;
 }
 

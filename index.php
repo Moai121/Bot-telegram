@@ -19,7 +19,7 @@ switch($message) {
         sendMessage($chatId, $response,FALSE);
         break;
     case '/noticias':
-        mostrarnoticias($chatId,$response,FALSE;
+        mostrarnoticias($chatId,$response,FALSE);
         break;
     case '/categoria':
         elegircategoria($chatId,$response,TRUE);

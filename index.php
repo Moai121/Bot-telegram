@@ -14,20 +14,20 @@ switch($message) {
         $response = 'Me has iniciado';
         sendMessage($chatId, $response);
         break;
-    case '/info':
-        $response = 'Hola! Soy @Botnoticiero';
-        sendMessage($chatId, $response);
-        break;
-    case '/noticias':
-        mostrarnoticias($chatId,$response);
-        break;
-    case '/categoria':
-        elegircategoria($chatId,$response,TRUE);
-        break;
-    default:
-        $response = 'No te he entendido';
-        sendMessage($chatId, $response);
-        break;
+    // case '/info':
+    //     $response = 'Hola! Soy @Botnoticiero';
+    //     sendMessage($chatId, $response);
+    //     break;
+    // case '/noticias':
+    //     mostrarnoticias($chatId,$response);
+    //     break;
+    // case '/categoria':
+    //     elegircategoria($chatId,$response,TRUE);
+    //     break;
+    // default:
+    //     $response = 'No te he entendido';
+    //     sendMessage($chatId, $response);
+    //     break;
 }
 
 function sendMessage($chatId, $response,$repl) {

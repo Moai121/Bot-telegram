@@ -1,4 +1,4 @@
-<!-- <?php
+ <?php
 
 echo "hola";
 // $token = "5261731576:AAGdSJRelD3k5Hl-Wnkudj1lPdm3W1mVSa4";
@@ -68,4 +68,4 @@ echo "hola";
         
 //         sendMessage($chatId,$categoria,TRUE); 
 //     }
-// ?>
+ ?>

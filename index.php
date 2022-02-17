@@ -1,6 +1,4 @@
  <?php
-
-echo "hola";
 $token = "5261731576:AAGdSJRelD3k5Hl-Wnkudj1lPdm3W1mVSa4";
 $website = 'https://api.telegram.org/bot'.$token;
 
@@ -26,14 +24,14 @@ if(empty($reply)){
             break;
         case '/categoria':
             $response='Las noticias de su categoria';
-            elegircategoria($chatId,$response,FALSE);
+           sendMessage($chatId,$response,TRUE);
             break;
         default:
             $response = 'No te he entendido';
             sendMessage($chatId, $response,FALSE);
             break;
-}
-}else{
+        }
+    }else{
     switch($message){
         case 'economia':
             elegircategoria($chatId,1);

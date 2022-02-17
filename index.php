@@ -60,7 +60,7 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-function elegircategoria($chatId,$response,$repl){
+function elegircategoria($chatId,$response){
     echo "timidin";
         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
         $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 

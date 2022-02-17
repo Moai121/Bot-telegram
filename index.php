@@ -98,7 +98,6 @@ function elegircategoria($chatId,$categoria){
         for($i=0;$i<9;$i++){
             $response=$response."\n\n".$array['channel']['item'][$i]['title'].$array['channel']['item'][$i]['link'];
             sendMessage($chatId,$response,false);
-        }
-        
+        }       
     }
  ?>

@@ -26,8 +26,7 @@ if(empty($reply)){
             break;
         case '/categoria':
             $response='Las noticias de su categoria';
-            elegircategoria($chatId,$response,TRUE);
-            echo "timidin";
+            elegircategoria($chatId,$response);
             break;
         default:
             $response = 'No te he entendido';

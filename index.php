@@ -34,7 +34,7 @@ if(empty($reply)){
             break;
 }
 }else{
-    switch($categoria){
+    switch($message){
         case 'economia':
             elegircategoria($chatId,1);
             break;

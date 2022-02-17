@@ -17,22 +17,18 @@ if(empty($reply)){
             $response = 'Me has iniciado';
             sendMessage($chatId, $response,FALSE);
             break;
-
         case '/info':
             $response = 'Hola! Soy @Botnoticiero';
             sendMessage($chatId, $response,FALSE);
             break;
-
         case '/noticias':
             mostrarnoticias($chatId);
             break;
-
         case '/categoria':
             $response='Las noticias de su categoria';
             elegircategoria($chatId,$response,TRUE);
             echo "timidin";
             break;
-
         default:
             $response = 'No te he entendido';
             sendMessage($chatId, $response,FALSE);
@@ -48,6 +44,9 @@ if(empty($reply)){
             break;
         case 'tecnologia':
             elegircategoria($chatId,3);
+            break;
+        case 'sanidad':
+            elegircategoria($chatId,4);
             break;
     }
 }
@@ -75,24 +74,33 @@ function mostrarnoticias($chatId){
     sendMessage($chatId,$titulo,TRUE);
 }
 function elegircategoria($chatId,$response){
-    // echo "timidin";
-    //     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
-    //     $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
-    //     $xmlstring=file_get_contents($url,false,$context);
-    //     $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
-    //     $json=json_encode($xml);
-    //     $array=json_decode($json,TRUE);
-
-    //     for($i=0;$i<9;$i++){
-    //         $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
-    //     }
-        
-    //     sendMessage($chatId,$categoria,TRUE); 
+        $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));      
     switch($response){
-        case 1;
+        case 1:
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
             sendMessage($chatId,$response);
             break;
+        case 2:
+            $url="https://www.elperiodico.com/es/rss/deportes/rss.xml";
+            sendMessage($chatId,$response);
+            break;
+        case 3:
+            $url="https://www.elperiodico.com/es/rss/tecnologia/rss.xml";
+            sendMessage($chatId,$response);
+            break;
+        case 4:
+            $url="https://www.elperiodico.com/es/rss/sanidad/rss.xml";
+            sendMessage($chatId,$response);
+            break;
         }
+        $xmlstring=file_get_contents($url,false,$context);
+        $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
+        $json=json_encode($xml);
+        $array=json_decode($json,TRUE);
+
+        for($i=0;$i<9;$i++){
+            $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
+        }
+        sendMessage($chatId,$response,TRUE);
     }
  ?>

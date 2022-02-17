@@ -77,19 +77,19 @@ function elegircategoria($chatId,$response){
     switch($response){
         case 1:
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
-            sendMessage($chatId,$response);
+            
             break;
         case 2:
             $url="https://www.elperiodico.com/es/rss/deportes/rss.xml";
-            sendMessage($chatId,$response);
+            
             break;
         case 3:
             $url="https://www.elperiodico.com/es/rss/tecnologia/rss.xml";
-            sendMessage($chatId,$response);
+            
             break;
         case 4:
             $url="https://www.elperiodico.com/es/rss/sanidad/rss.xml";
-            sendMessage($chatId,$response);
+            
             break;
         }
         $xmlstring=file_get_contents($url,false,$context);
@@ -98,7 +98,7 @@ function elegircategoria($chatId,$response){
         $array=json_decode($json,TRUE);
 
         for($i=0;$i<9;$i++){
-            $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
+            $response=$response."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
         }
         sendMessage($chatId,$response,TRUE);
     }

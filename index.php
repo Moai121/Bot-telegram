@@ -11,31 +11,45 @@ $chatId = $update['message']['chat']['id'];
 $message = $update['message']['text'];
 $reply = $update["message"]["reply_to_message"]["text"];
 
-switch($message) {
-    case '/start':
-        $response = 'Me has iniciado';
-        sendMessage($chatId, $response,FALSE);
-        break;
+if(empty($reply)){
+    switch($message) {
+        case '/start':
+            $response = 'Me has iniciado';
+            sendMessage($chatId, $response,FALSE);
+            break;
 
-    case '/info':
-        $response = 'Hola! Soy @Botnoticiero';
-        sendMessage($chatId, $response,FALSE);
-        break;
+        case '/info':
+            $response = 'Hola! Soy @Botnoticiero';
+            sendMessage($chatId, $response,FALSE);
+            break;
 
-    case '/noticias':
-        mostrarnoticias($chatId);
-        break;
+        case '/noticias':
+            mostrarnoticias($chatId);
+            break;
 
-    case '/categoria':
-        $response='Las noticias de su categoria';
-        elegircategoria($chatId,$response,TRUE);
-        echo "timidin";
-        break;
+        case '/categoria':
+            $response='Las noticias de su categoria';
+            elegircategoria($chatId,$response,TRUE);
+            echo "timidin";
+            break;
 
-    default:
-        $response = 'No te he entendido';
-        sendMessage($chatId, $response,FALSE);
-        break;
+        default:
+            $response = 'No te he entendido';
+            sendMessage($chatId, $response,FALSE);
+            break;
+}
+}else{
+    switch($categoria){
+        case 'economia':
+            elegircategoria($chatId,1);
+            break;
+        case 'deportes':
+            elegircategoria($chatId,2);
+            break;
+        case 'tecnologia':
+            elegircategoria($chatId,3);
+            break;
+    }
 }
 
 function sendMessage($chatId, $response,$repl) {
@@ -61,18 +75,24 @@ function mostrarnoticias($chatId){
     sendMessage($chatId,$titulo,TRUE);
 }
 function elegircategoria($chatId,$response){
-    echo "timidin";
-        $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
-        $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
-        $xmlstring=file_get_contents($url,false,$context);
-        $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
-        $json=json_encode($xml);
-        $array=json_decode($json,TRUE);
+    // echo "timidin";
+    //     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml'))); 
+    //     $url = "https://www.elperiodico.com/es/rss/".$response."/rss.xml"; 
+    //     $xmlstring=file_get_contents($url,false,$context);
+    //     $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
+    //     $json=json_encode($xml);
+    //     $array=json_decode($json,TRUE);
 
-        for($i=0;$i<9;$i++){
-            $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
-        }
+    //     for($i=0;$i<9;$i++){
+    //         $categoria=$categoria."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
+    //     }
         
-        sendMessage($chatId,$categoria,TRUE); 
+    //     sendMessage($chatId,$categoria,TRUE); 
+    switch($response){
+        case 1;
+            $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
+            sendMessage($chatId,$response);
+            break;
+        }
     }
  ?>

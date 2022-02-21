@@ -16,7 +16,7 @@ if(empty($reply)){
             sendMessage($chatId, $response,FALSE);
             break;
         case '/info':
-            $response = 'Hola! Soy @Botnoticiero';
+            $response = 'Hola! Soy @Botnoticiero, si quieres saber sobre mi, te recomiendo que pruebes comandos tales como /noticias o /menu ';
             sendMessage($chatId, $response,FALSE);
             break;
         case '/noticias':

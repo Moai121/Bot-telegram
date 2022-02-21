@@ -19,8 +19,8 @@ if(empty($reply)){
             $response = 'Hola! Soy @Botnoticiero, si quieres saber sobre mi, te recomiendo que pruebes comandos tales como /noticias o /menu ';
             sendMessage($chatId, $response,FALSE);
             break;
-        case '/atencion':
-            $response='Hola, como te encuentras? Necesitas hablar?';
+        case '/inspiracion':
+            $response='Hola, aqui te recomiendo unas cuantas noticias';
             sendMessage($chatId,$response,TRUE);
         case '/noticias':
             mostrarnoticias($chatId);

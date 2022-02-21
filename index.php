@@ -44,11 +44,11 @@ if(empty($reply)){
             elegircategoria($chatId,3);
             break;
         case '/sanidad':
+            sendMessage($chatId,"hola",FALSE);   
             elegircategoria($chatId,4);
             break;
     }
 }
-
 function sendMessage($chatId, $response,$repl) {
     if ($repl == TRUE){ 
         $reply_mark = array('force_reply' => True); 
@@ -73,7 +73,7 @@ function mostrarnoticias($chatId){
 }
 function elegircategoria($chatId,$categoria){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));   
-    sendMessage($chatId,"hola",FALSE);   
+    
     switch($categoria){
         case 1:
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";

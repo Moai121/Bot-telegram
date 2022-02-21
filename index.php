@@ -33,16 +33,16 @@ if(empty($reply)){
         }
     }else{
     switch($message){
-        case 'economia':
+        case '/economia':
             elegircategoria($chatId,1);
             break;
-        case 'deportes':
+        case '/deportes':
             elegircategoria($chatId,2);
             break;
-        case 'tecnologia':
+        case '/tecnologia':
             elegircategoria($chatId,3);
             break;
-        case 'sanidad':
+        case '/sanidad':
             elegircategoria($chatId,4);
             break;
     }

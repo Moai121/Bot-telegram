@@ -70,9 +70,9 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-function elegircategoria($chatId,$response){
+function elegircategoria($chatId,$categoria){
         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));      
-    switch($response){
+    switch($categoria){
         case 1:
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
             

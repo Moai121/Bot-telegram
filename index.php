@@ -72,7 +72,8 @@ function mostrarnoticias($chatId){
     sendMessage($chatId,$titulo,TRUE);
 }
 function elegircategoria($chatId,$categoria){
-        $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));      
+    $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));   
+    sendMessage($chatId,"hola",FALSE);   
     switch($categoria){
         case 1:
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";

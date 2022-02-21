@@ -44,7 +44,7 @@ if(empty($reply)){
             elegircategoria($chatId,3);
             break;
         case '/sanidad':
-            sendMessage($chatId,"hola",FALSE);   
+            // sendMessage($chatId,"hola",FALSE);   
             elegircategoria($chatId,4);
             break;
     }

@@ -70,9 +70,9 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-function elegircategoria($chatId,$categoria){
+function elegircategoria($chatId,$response){
         $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));      
-    switch($categoria){
+    switch($response){
         case 1:
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
             
@@ -97,7 +97,7 @@ function elegircategoria($chatId,$categoria){
 
         for($i=0;$i<9;$i++){
             $response=$response."\n\n".$array['channel']['item'][$i]['title'].$array['channel']['item'][$i]['link'];
-            sendMessage($chatId,$response,false);
+            sendMessage($chatId,$response,true);
         }       
     }
  ?>

@@ -19,6 +19,9 @@ if(empty($reply)){
             $response = 'Hola! Soy @Botnoticiero, si quieres saber sobre mi, te recomiendo que pruebes comandos tales como /noticias o /menu ';
             sendMessage($chatId, $response,FALSE);
             break;
+        case '/atencion':
+            $response='Hola, como te encuentras? Necesitas hablar?';
+            sendMessage($chatId,$response,TRUE);
         case '/noticias':
             mostrarnoticias($chatId);
             break;
@@ -59,7 +62,20 @@ if(empty($reply)){
         }
     }
 else{
-            elegircategoria($chatId,$message);
+            switch($message){
+                case 'economia':   
+                    economia($chatId,false);
+                    break;
+                case 'deportes':   
+                    deportes($chatId,false);
+                    break;
+                case 'sanidad':   
+                    sanidad($chatId,false);
+                    break;
+                case 'tecnologia':   
+                    tecnologia($chatId,false); 
+                    break;   
+            }
 }
 
 function sendMessage($chatId, $response,$repl) {
@@ -83,7 +99,7 @@ function mostrarnoticias($chatId){
     for($i=0;$i <9;$i++){
         $titulo=$titulo."\n\n".$array['channel']['item'][$i]['title']."<a href='".$array['channel']['item'][$i]['link']."'>+info</a>";
     }
-    sendMessage($chatId,$titulo,TRUE);
+    sendMessage($chatId,$titulo,FALSE);
 }
 function deportes($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));

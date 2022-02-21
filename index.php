@@ -85,21 +85,6 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
-
-// function economia($chatId){
-//     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));   
-//     $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
-        
-//         $xmlstring=file_get_contents($url,FALSE,$context);
-//         $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
-//         $json=json_encode($xml);
-//         $array=json_decode($json,TRUE);
-
-//         for($i=0;$i<=9;$i++){
-//             $response=$response."\n\n".$array['channel']['item'][$i]['title'].$array['channel']['item'][$i]['link'];
-//             sendMessage($chatId,$response,FALSE);
-//         }       
-//     }
 function deportes($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
     $url="https://www.elperiodico.com/es/rss/deportes/rss.xml";

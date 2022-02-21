@@ -41,7 +41,7 @@ if(empty($reply)){
         case '/menu':
             $keyboard = array('keyboard' =>
             array(array(
-            array('text'=>'/teconologia📡','callback_data'=>"1"),
+            array('text'=>'/tecnologia📡','callback_data'=>"1"),
             array('text'=>'/sanidad👩‍🔬','callback_data'=>"2"),
             array('text'=>'/economia💰','callback_data'=>"3")
             ),

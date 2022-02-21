@@ -32,23 +32,10 @@ if(empty($reply)){
             break;
         }
     }
-    else{
-    switch($message){
-        case '/economia':
-            elegircategoria($chatId,1);
-            break;
-        case '/deportes':
-            elegircategoria($chatId,2);
-            break;
-        case '/tecnologia':
-            elegircategoria($chatId,3);
-            break;
-        case '/sanidad':
-            sendMessage($chatId,"hola",FALSE);   
-            elegircategoria($chatId,4);
-            break;
-    }
+else{
+            elegircategoria($chatId,$message);
 }
+
 function sendMessage($chatId, $response,$repl) {
     if ($repl == TRUE){ 
         $reply_mark = array('force_reply' => True); 
@@ -58,6 +45,7 @@ function sendMessage($chatId, $response,$repl) {
     } 
     file_get_contents($url);
 }
+
 function mostrarnoticias($chatId){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));
     $url="https://www.elperiodico.com/es/rss/rss_portada.xml";
@@ -71,35 +59,36 @@ function mostrarnoticias($chatId){
     }
     sendMessage($chatId,$titulo,TRUE);
 }
+
 function elegircategoria($chatId,$categoria){
     $context=stream_context_create(array('http'=>array('header'=>'Accept:application/xml')));   
     
     switch($categoria){
-        case 1:
+        case "economia":
             $url="https://www.elperiodico.com/es/rss/economia/rss.xml";
-            
             break;
-        case 2:
-            $url="https://www.elperiodico.com/es/rss/deportes/rss.xml";
-            
+        case "deportes":
+            $url="https://www.elperiodico.com/es/rss/deportes/rss.xml"; 
             break;
-        case 3:
+        case "tecnologia":
             $url="https://www.elperiodico.com/es/rss/tecnologia/rss.xml";
-            
             break;
-        case 4:
+        case "sanidad":
             $url="https://www.elperiodico.com/es/rss/sanidad/rss.xml";
-            
             break;
-        }
-        $xmlstring=file_get_contents($url,false,$context);
+        default:
+            $url="https://www.elperiodico.com/es/rss/rss_portada.xml";
+            break;
+    }
+        
+        $xmlstring=file_get_contents($url,FALSE,$context);
         $xml=simplexml_load_string($xmlstring,"SimpleXMLElement",LIBXML_NOCDARA);
         $json=json_encode($xml);
         $array=json_decode($json,TRUE);
 
-        for($i=0;$i<9;$i++){
+        for($i=0;$i<=9;$i++){
             $response=$response."\n\n".$array['channel']['item'][$i]['title'].$array['channel']['item'][$i]['link'];
-            sendMessage($chatId,$response,true);
+            sendMessage($chatId,$response,FALSE);
         }       
     }
  ?>

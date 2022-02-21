@@ -1,24 +1,21 @@
 var indexSectionsWithContent =
 {
-  0: "$deimst",
+  0: "$i",
   1: "i",
-  2: "demst",
-  3: "$e"
+  2: "$"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "files",
-  2: "functions",
-  3: "variables"
+  2: "variables"
 };
 
 var indexSectionLabels =
 {
   0: "Todo",
   1: "Archivos",
-  2: "Funciones",
-  3: "Variables"
+  2: "Variables"
 };
 

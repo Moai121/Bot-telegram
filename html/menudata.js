@@ -28,5 +28,4 @@ var menudata={children:[
 {text:"Lista de archivos",url:"files.html"},
 {text:"Globales",url:"globals.html",children:[
 {text:"Todo",url:"globals.html"},
-{text:"Funciones",url:"globals_func.html"},
 {text:"Variables",url:"globals_vars.html"}]}]}]}
